@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado Online</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f4f7fa;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* Barra de Notificação */
+        .notification-bar {
+            background: #ff7043;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-size: 1em;
+        }
+
+        /* Cabeçalho com estilo moderno */
+        header {
+            background: linear-gradient(135deg, #4a90e2, #007bff);
+            padding: 20px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header input[type="text"] {
+            padding: 12px;
+            width: 45%;
+            max-width: 500px;
+            border-radius: 25px;
+            border: none;
+            transition: box-shadow 0.3s ease;
+        }
+
+        header input[type="text"]:focus {
+            outline: none;
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+        }
+
+        header button {
+            padding: 12px 20px;
+            background-color: #ff7043;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 25px;
+            font-size: 1em;
+            margin-top: 10px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        header button:hover {
+            background-color: #ff5722;
+            transform: scale(1.05);
+        }
+
+        /* Menu de navegação */
+        nav ul {
+            display: flex;
+            justify-content: center;
+            background-color: #2c3e50;
+            list-style: none;
+            padding: 15px;
+            margin-top: 15px;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        nav ul li a img {
+            width: 20px;
+            height: 20px;
+            margin-right: 8px;
+        }
+
+        /* Seção de promoções */
+        .promo-banner {
+            background: url('https://via.placeholder.com/1200x200') no-repeat center center;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 40px;
+            font-size: 2em;
+            font-weight: bold;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+        }
+
+        /* Seção de produtos */
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .product-item {
+            width: 280px;
+            margin: 15px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            overflow: hidden;
+        }
+
+        .product-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .product-item img:hover {
+            transform: scale(1.05);
+        }
+
+        .product-item h3 {
+            font-size: 1.4em;
+            margin: 10px 0;
+            color: #333;
+        }
+
+        .product-item p {
+            font-size: 1.2em;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        /* Estrelas de avaliação */
+        .stars {
+            color: #FFD700;
+            margin-bottom: 15px;
+        }
+
+        .product-item button {
+            padding: 12px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 25px;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 1em;
+        }
+
+        .product-item button:hover {
+            background-color: #218838;
+            transform: scale(1.1);
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #2c3e50;
+            color: #f8f9fa;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+            font-size: 1em;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            header input[type="text"] {
+                width: 60%;
+            }
+
+            .products {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .product-item {
+                width: 90%;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de Notificação -->
+    <div class="notification-bar">
+        <p>Promoção Especial: Frete grátis para pedidos acima de R$100!</p>
+    </div>
+
+    <!-- Cabeçalho -->
+    <header>
+        <h1>Mercado Online</h1>
+        <input type="text" placeholder="Buscar produtos...">
+        <button>Buscar</button>
+    </header>
+
+    <!-- Menu de Categorias -->
+    <nav>
+        <ul>
+            <li><a href="#"><img src="https://via.placeholder.com/20" alt="Eletrônicos"> Eletrônicos</a></li>
+            <li><a href="#"><img src="https://via.placeholder.com/20" alt="Moda"> Moda</a></li>
+            <li><a href="#"><img src="https://via.placeholder.com/20" alt="Casa"> Casa</a></li>
+            <li><a href="#"><img src="https://via.placeholder.com/20" alt="Esporte"> Esporte</a></li>
+        </ul>
+    </nav>
+
+    <!-- Banner de Promoções -->
+    <section class="promo-banner">
+        Super Promoção de Inverno - Descontos até 50%!
+    </section>
+
+    <!-- Lista de Produtos -->
+    <section class="products">
+        <h2>Produtos em Destaque</h2>
+        
+        <!-- Produto 1 -->
+        <div class="product-item">
+            <img src="https://via.placeholder.com/250" alt="Produto 1">
+            <h3>Produto 1</h3>
+            <div class="stars">★★★★★</div>
+            <p>R$ 99,99</p>
+            <button>Comprar</button>
+        </div>
+
+        <!-- Produto 2 -->
+        <div class="product-item">
+            <img src="https://via.placeholder.com/250" alt="Produto 2">
+            <h3>Produto 2</h3>
+            <div class="stars">★★★★☆</div>
+            <p>R$ 149,99</p>
+            <button>Comprar</button>
+        </div>
+
+        <!-- Produto 3 -->
+        <div class="product-item">
+            <img src="https://via.placeholder.com/250" alt="Produto 3">
+            <h3>Produto 3</h3>
+            <div class="stars">★★★☆☆</div>
+            <p>R$ 199,99</p>
+            <button>Comprar</button>
+        </div>
+        
+        <!-- Produto 4 -->
+        <div class="product-item">
+            <img src="https://via.placeholder.com/250" alt="Produto 4">
+            <h3>Produto 4</h3>
+            <div class="stars">★★★★★</div>
+            <p>R$ 89,99</p>
+            <button>Comprar</button>
+        </div>
+
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>Mercado Online - Todos os direitos reservados &copy; 2024.</p>
+    </footer>
+</body>
+</html>
